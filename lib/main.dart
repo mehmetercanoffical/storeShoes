@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:store/pages/auth/login.dart';
+import 'package:store/services/authacation.dart';
+import 'package:store/services/stream.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Provider<Authacation>(
+      create: (_) => Authacation(),
+      child: MaterialApp(
+        title: 'Store App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          accentColor: Colors.black,
+          primarySwatch: Colors.blue,
+          textTheme: GoogleFonts.poppinsTextTheme()
+              .copyWith(headline3: GoogleFonts.poppins()),
+        ),
+        home: StreamAuthControl(),
+      ),
+    );
+  }
+}
