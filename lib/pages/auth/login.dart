@@ -27,161 +27,158 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xffFFFFFF),
         child: SafeArea(
-          child: Form(
-            key: key,
-            child: isLoading
-                ? Center(child: CircularProgressIndicator())
-                : Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: kPaddingHorizontal,
-                        vertical: kPaddingVertical,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            height: 44,
-                            width: 44,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.grey.withOpacity(0.7),
-                            ),
-                            child: IconButton(
-                              icon: Icon(Icons.close),
-                              onPressed: () {},
-                            ),
-                          ),
-                          sheight40,
-                          Text(
-                            "Welcome Back",
-                            style: popiens(
-                                context, 25, darkColor, FontWeight.bold),
-                          ),
-                          sheight10,
-                          Text(
-                            "Sign In width Social Media or fill the form",
-                            style: popiens(
-                                context, 16, greyColor, FontWeight.bold),
-                          ),
-                          sheight20,
-                          Row(
-                            children: [
-                              SocialMediaSign(
-                                  iconData: Icons.ac_unit_sharp, press: () {}),
-                              swidth10,
-                              SocialMediaSign(
-                                  iconData: Icons.access_alarm_outlined,
-                                  press: getGoogleWidth),
-                            ],
-                          ),
-                          sheight20,
-                          TextFieldCenter(
-                            title: "Email",
-                            complete: true,
-                            iconData: Icons.email,
-                            isObs: false,
-                            onSave: (value) {
-                              email = value;
-                            },
-                            validate: (value) {
-                              if (value.isEmpty) {
-                                return "You are use add email label";
-                              } else if (!value.contains("@")) {
-                                return "You are email not true";
-                              }
-                              return null;
-                            },
-                            type: TextInputType.emailAddress,
-                          ),
-                          sheight10,
-                          TextFieldCenter(
-                            title: "Password",
-                            complete: false,
-                            iconData: Icons.lock,
-                            isObs: true,
-                            onSave: (value) {
-                              password = value;
-                            },
-                            validate: (value) {
-                              if (value.isEmpty) {
-                                return "You are use add password label";
-                              } else if (value.trim().length < 6) {
-                                return "You are Wrong password";
-                              }
-                              return null;
-                            },
-                            type: TextInputType.visiblePassword,
-                          ),
-                          Spacer(),
-                          sheight15,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Haven't you Account "),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      CupertinoPageRoute(
-                                        builder: (context) => SingUpPage(),
-                                      ));
-                                },
-                                child: Text(
-                                  "Sign Up",
-                                  style: popiens(
-                                    context,
-                                    13,
-                                    redOpacityColor,
-                                    FontWeight.w600,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          sheight15,
-                          Align(
-                            alignment: Alignment.center,
-                            child: InkWell(
-                              onTap: getSingIn,
-                              child: Container(
-                                height: 70,
-                                width: 180,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(40),
-                                  color: blueColor,
-                                ),
-                                child: isLoading
-                                    ? CircularProgressIndicator()
-                                    : Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "Sign In",
-                                            style: popiens(context, 16,
-                                                whiteColor, FontWeight.w600),
-                                          ),
-                                          swidth5,
-                                          Icon(
-                                            Icons.arrow_right_alt,
-                                            color: whiteColor,
-                                          )
-                                        ],
-                                      ),
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Form(
+              key: key,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: kPaddingHorizontal,
+                  vertical: kPaddingVertical,
+                ),
+                child: isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: 44,
+                              width: 44,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey.withOpacity(0.7),
+                              ),
+                              child: IconButton(
+                                icon: Icon(Icons.close),
+                                onPressed: () {},
                               ),
                             ),
-                          ),
-                          sheight10,
-                        ],
+                            sheight40,
+                            Text(
+                              "Welcome Back",
+                              style: popiens(
+                                  context, 25, darkColor, FontWeight.bold),
+                            ),
+                            Text("Sign In width Social Media or Fill to Form"),
+                            sheight10,
+                            sheight20,
+                            Row(
+                              children: [
+                                SocialMediaSign(
+                                    iconData: Icons.ac_unit_sharp,
+                                    press: () {}),
+                                swidth10,
+                                SocialMediaSign(
+                                    iconData: Icons.access_alarm_outlined,
+                                    press: getGoogleWidth),
+                              ],
+                            ),
+                            sheight20,
+                            TextFieldCenter(
+                              title: "Email",
+                              complete: true,
+                              iconData: Icons.email,
+                              isObs: false,
+                              onSave: (value) {
+                                email = value;
+                              },
+                              validate: (value) {
+                                if (value.isEmpty) {
+                                  return "You are use add email label";
+                                } else if (!value.contains("@")) {
+                                  return "You are email not true";
+                                }
+                                return null;
+                              },
+                              type: TextInputType.emailAddress,
+                            ),
+                            sheight10,
+                            TextFieldCenter(
+                              title: "Password",
+                              complete: false,
+                              iconData: Icons.lock,
+                              isObs: true,
+                              onSave: (value) {
+                                password = value;
+                              },
+                              validate: (value) {
+                                if (value.isEmpty) {
+                                  return "You are use add password label";
+                                } else if (value.trim().length < 6) {
+                                  return "You are Wrong password";
+                                }
+                                return null;
+                              },
+                              type: TextInputType.visiblePassword,
+                            ),
+                            sheight40,
+                            Align(
+                              alignment: Alignment.center,
+                              child: InkWell(
+                                onTap: getSingIn,
+                                child: Container(
+                                  height: 70,
+                                  width: 180,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(40),
+                                    color: blueColor,
+                                  ),
+                                  child: isLoading
+                                      ? CircularProgressIndicator()
+                                      : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Sign In",
+                                              style: popiens(context, 16,
+                                                  whiteColor, FontWeight.w600),
+                                            ),
+                                            swidth5,
+                                            Icon(
+                                              Icons.arrow_right_alt,
+                                              color: whiteColor,
+                                            )
+                                          ],
+                                        ),
+                                ),
+                              ),
+                            ),
+                            //Spacer(),
+                            sheight20,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Haven't you Account "),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) => SingUpPage(),
+                                        ));
+                                  },
+                                  child: Text(
+                                    "Sign Up",
+                                    style: popiens(
+                                      context,
+                                      13,
+                                      redOpacityColor,
+                                      FontWeight.w600,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ),
+              ),
+            ),
           ),
         ),
       ),
@@ -198,6 +195,11 @@ class _LoginScreenState extends State<LoginScreen> {
       });
       try {
         await provider.singIn(email, password);
+        Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (context) => StreamAuthControl(),
+            ));
       } catch (e) {
         getErrorMessage(errorCode: e.code);
         setState(() {
@@ -216,7 +218,7 @@ class _LoginScreenState extends State<LoginScreen> {
       });
       Users user = await provider.googleWidth();
       if (user != null) {
-       Users userControl =  await Cloud().getUsers(user.id);
+        Users userControl = await Cloud().getUsers(user.id);
         if (userControl == null) {
           var userNotFound = SnackBar(content: Text("User not found"));
           scfKey.currentState.showSnackBar(userNotFound);

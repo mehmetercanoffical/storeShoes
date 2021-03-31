@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+String imgPath = "assets/img";
+
 const double kPaddingHorizontal = 20;
 const double kPaddingVertical = 20;
 

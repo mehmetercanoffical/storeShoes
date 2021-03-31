@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:store/pages/auth/login.dart';
+import 'package:store/pages/auth/signup.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
@@ -55,14 +58,26 @@ class _FirtsPageState extends State<FirtsPage> {
                 Spacer(),
                 ButtonCenter(
                   color: whiteColor,
-                  press: () {},
+                  press: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => SingUpPage(),
+                        ));
+                  },
                   textColor: darkColor,
                   title: "Sign Up",
                 ),
                 sheight5,
                 ButtonCenter(
                   color: redOpacityColor,
-                  press: () {},
+                  press: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ));
+                  },
                   textColor: whiteColor,
                   title: "Sign In",
                 ),
@@ -76,12 +91,14 @@ class _FirtsPageState extends State<FirtsPage> {
 
   Text buildText(BuildContext context,
       {String text, Color color, double size}) {
-    return Text(text,
-        style: popiens(
-          context,
-          size,
-          color,
-          FontWeight.normal,
-        ));
+    return Text(
+      text,
+      style: popiens(
+        context,
+        size,
+        color,
+        FontWeight.normal,
+      ),
+    );
   }
 }

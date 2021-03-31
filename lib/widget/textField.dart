@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store/style/color.dart';
-import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
 
 class TextFieldCenter extends StatelessWidget {

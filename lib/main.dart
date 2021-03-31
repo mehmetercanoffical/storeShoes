@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:store/pages/auth/login.dart';
 import 'package:store/services/authacation.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:store/services/stream.dart';
 
 void main() {
