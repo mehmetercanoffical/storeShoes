@@ -17,55 +17,53 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         child: SafeArea(
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: kPaddingHorizontal,
-                vertical: kPaddingVertical,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 30,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: title.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          splashColor: greyColor,
-                          highlightColor: trasparentColor,
-                          onTap: () {
-                            setState(() {
-                              title[currentIndex].isSelected = false;
-                              currentIndex = index;
-                              title[currentIndex].isSelected = true;
-                            });
-                          },
-                          child: TitleCenter(
-                            title: title[index].title,
-                            isSelected: title[index].isSelected,
-                          ),
-                        );
-                      },
-                    ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: kPaddingHorizontal,
+              vertical: kPaddingVertical,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 30,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: title.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        splashColor: greyColor,
+                        highlightColor: trasparentColor,
+                        onTap: () {
+                          setState(() {
+                            title[currentIndex].isSelected = false;
+                            currentIndex = index;
+                            title[currentIndex].isSelected = true;
+                          });
+                        },
+                        child: TitleCenter(
+                          title: title[index].title,
+                          isSelected: title[index].isSelected,
+                        ),
+                      );
+                    },
                   ),
-                  sheight10,
-                  Expanded(
-                    child: PageView.builder(
-                      itemCount: pages.length,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return pages[currentIndex];
-                      },
-                    ),
-                  )
-                ],
-              ),
+                ),
+                sheight10,
+                Expanded(
+                  child: PageView.builder(
+                    itemCount: pages.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return pages[currentIndex];
+                    },
+                  ),
+                )
+              ],
             ),
           ),
         ),
@@ -77,4 +75,15 @@ class _HomeState extends State<Home> {
 List<Widget> pages = [
   NewPopular(),
   Story(),
+];
+
+List<TitleCenter> title = [
+  TitleCenter(
+    isSelected: true,
+    title: "News&Story",
+  ),
+  TitleCenter(
+    isSelected: false,
+    title: "Story",
+  ),
 ];

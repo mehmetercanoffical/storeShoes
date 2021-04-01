@@ -5,4 +5,6 @@ Color whiteColor = Colors.white;
 Color greyColor = Colors.grey;
 Color darkColor = Colors.black;
 Color trasparentColor = Colors.transparent;
+
 Color blueColor = Color(0xff0008C7);
+Color greenColor = Color(0xff42D70D);

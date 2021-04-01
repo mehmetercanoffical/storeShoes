@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:store/models/users.dart';
 import 'package:store/pages/auth/login.dart';
@@ -9,6 +10,7 @@ import 'package:store/services/stream.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
+import 'package:store/widget/socialMediaAuth.dart';
 import 'package:store/widget/textField.dart';
 
 class SingUpPage extends StatefulWidget {
@@ -24,6 +26,7 @@ class _SingUpPageState extends State<SingUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scfKey,
       body: Container(
         child: SafeArea(
           child: Container(
@@ -67,12 +70,12 @@ class _SingUpPageState extends State<SingUpPage> {
                             Row(
                               children: [
                                 SocialMediaSign(
-                                  iconData: Icons.ac_unit_sharp,
+                                  iconData: FontAwesomeIcons.facebook,
                                   press: () {},
                                 ),
                                 swidth10,
                                 SocialMediaSign(
-                                  iconData: Icons.access_alarm_outlined,
+                                  iconData: FontAwesomeIcons.google,
                                   press: getGoogleWidth,
                                 ),
                               ],
@@ -94,7 +97,7 @@ class _SingUpPageState extends State<SingUpPage> {
                                 }
                                 return null;
                               },
-                              type: TextInputType.emailAddress,
+                              type: TextInputType.name,
                             ),
                             sheight10,
                             TextFieldCenter(
@@ -139,7 +142,7 @@ class _SingUpPageState extends State<SingUpPage> {
                             Align(
                               alignment: Alignment.center,
                               child: InkWell(
-                                onTap: getSignUo,
+                                onTap: getSignUp,
                                 child: Container(
                                   height: 70,
                                   width: 180,
@@ -204,7 +207,7 @@ class _SingUpPageState extends State<SingUpPage> {
     );
   }
 
-  Future<Users> getSignUo() async {
+  Future<Users> getSignUp() async {
     final provider = Provider.of<Authacation>(context, listen: false);
 
     if (key.currentState.validate()) {
@@ -214,6 +217,7 @@ class _SingUpPageState extends State<SingUpPage> {
       });
       try {
         Users user = await provider.singUp(email, password);
+        print(user.id);
         if (user != null) {
           Cloud().saveUsers(
             id: user.id,
@@ -227,12 +231,31 @@ class _SingUpPageState extends State<SingUpPage> {
               builder: (context) => StreamAuthControl(),
             ));
       } catch (e) {
-        getErrorMessage(errorCode: e.code);
         setState(() {
           isLoading = false;
         });
+        getErrorMessage(errorCode: e.code.toString());
       }
     }
+  }
+
+  Future<String> getErrorMessage({errorCode}) {
+    String errorMesage;
+    if (errorCode == "ERROR_USER_NOT_FOUND") {
+      errorMesage = "Email bulunamadı";
+    } else if (errorCode == "ERROR_WRONG_PASSWORD") {
+      errorMesage = "Geçersiz şifre";
+    } else if (errorCode == "ERROR_USER_DİSABLED") {
+      errorMesage = "Kunlanici Engellenmiştir";
+    } else if (errorCode == "ERROR_INVALID_EMAIL") {
+      errorMesage = "Eposta Adresi geçersizdir";
+    } else if (errorCode == "ERROR_EMAIL_ALREADY_IN_USE") {
+      errorMesage = "Eposta Adresi daha önceden kullanılmıştır";
+    } else {
+      errorMesage = " Tanınmayan bir hata oluştu";
+    }
+    var snackbar = SnackBar(content: Text(errorMesage));
+    scfKey.currentState.showSnackBar(snackbar);
   }
 
   Future<Users> getGoogleWidth() async {
@@ -255,24 +278,7 @@ class _SingUpPageState extends State<SingUpPage> {
       setState(() {
         isLoading = false;
       });
-      getErrorMessage(errorCode: e.code);
+      getErrorMessage(errorCode: e);
     }
-  }
-
-  Future<String> getErrorMessage({errorCode}) {
-    String errorMesage;
-    if (errorCode == "ERROR_USER_NOT_FOUND") {
-      errorMesage = "Email bulunamadı";
-    } else if (errorCode == "ERROR_WRONG_PASSWORD") {
-      errorMesage = "Geçersiz şifre";
-    } else if (errorCode == "ERROR_USER_DİSABLED") {
-      errorMesage = "Kunlanici Engellenmiştir";
-    } else if (errorCode == "ERROR_INVALID_EMAIL") {
-      errorMesage = "Eposta Adresi geçersizdir";
-    } else {
-      errorMesage = " Tanınmayan bir hata oluştu";
-    }
-    var snackbar = SnackBar(content: Text(errorMesage));
-    scfKey.currentState.showSnackBar(snackbar);
   }
 }

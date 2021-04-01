@@ -31,6 +31,7 @@ dependencies:
   cloud_firestore: ^0.13.7
   google_sign_in: ^4.5.1
   provider:
+  font_awesome_flutter:
   google_fonts:
   firebase_auth: ^0.16.1
 

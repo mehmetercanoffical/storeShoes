@@ -19,8 +19,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           accentColor: Colors.black,
           primarySwatch: Colors.blue,
-          textTheme: GoogleFonts.poppinsTextTheme()
-              .copyWith(headline3: GoogleFonts.poppins()),
+          textTheme: GoogleFonts.poppinsTextTheme().copyWith(
+            headline3: GoogleFonts.poppins(),
+            headline4: GoogleFonts.roboto(),
+          ),
         ),
         home: StreamAuthControl(),
       ),

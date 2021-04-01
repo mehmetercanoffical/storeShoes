@@ -1,0 +1,4 @@
+class Size {
+  int size;
+  
+}

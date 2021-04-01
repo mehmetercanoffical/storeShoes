@@ -6,6 +6,7 @@ class ButtonCenter extends StatelessWidget {
   String title;
   Function press;
   Color color;
+  
   Color textColor;
   ButtonCenter({this.title, this.color, this.press, this.textColor});
   @override

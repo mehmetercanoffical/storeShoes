@@ -4,16 +4,7 @@ import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
 
 
-List<TitleCenter> title = [
-  TitleCenter(
-    isSelected: true,
-    title: "News&Story",
-  ),
-  TitleCenter(
-    isSelected: false,
-    title: "Story",
-  ),
-];
+
 
 class TitleCenter extends StatelessWidget {
   String title;

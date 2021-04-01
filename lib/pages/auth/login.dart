@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +10,9 @@ import 'package:store/services/stream.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
+import 'package:store/widget/socialMediaAuth.dart';
 import 'package:store/widget/textField.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scfKey,
       body: Container(
         child: SafeArea(
           child: Container(
@@ -69,11 +71,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             Row(
                               children: [
                                 SocialMediaSign(
-                                    iconData: Icons.ac_unit_sharp,
+                                    iconData: FontAwesomeIcons.facebook,
                                     press: () {}),
                                 swidth10,
                                 SocialMediaSign(
-                                    iconData: Icons.access_alarm_outlined,
+                                    iconData: FontAwesomeIcons.google,
                                     press: getGoogleWidth),
                               ],
                             ),
@@ -233,7 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         isLoading = false;
       });
-      getErrorMessage(errorCode: e.code);
+      getErrorMessage(errorCode: e.toString());
     }
   }
 
@@ -252,34 +254,5 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     var snackbar = SnackBar(content: Text(errorMesage));
     scfKey.currentState.showSnackBar(snackbar);
-  }
-}
-
-class SocialMediaSign extends StatelessWidget {
-  const SocialMediaSign({
-    Key key,
-    @required this.iconData,
-    @required this.press,
-  }) : super(key: key);
-
-  final IconData iconData;
-  final Function press;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: press,
-      highlightColor: trasparentColor,
-      splashColor: trasparentColor,
-      child: Container(
-        height: 50,
-        width: 50,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: greyColor, width: 1),
-        ),
-        child: Icon(iconData),
-      ),
-    );
   }
 }
