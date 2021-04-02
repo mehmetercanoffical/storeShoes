@@ -6,6 +6,7 @@ import 'package:store/style/textStyle.dart';
 
 
 
+// ignore: must_be_immutable
 class TitleCenter extends StatelessWidget {
   String title;
   bool isSelected = true;

@@ -109,6 +109,7 @@ List<ButtonNavigatorCenter> getList = [
   ),
 ];
 
+// ignore: must_be_immutable
 class ButtonNavigatorCenter extends StatelessWidget {
   String title;
   IconData iconData;

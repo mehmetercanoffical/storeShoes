@@ -30,6 +30,7 @@ class Authacation {
     return users(result.user);
   }
 
+  // ignore: missing_return
   Future<Users> singOut() async {
     await firebaseAuth.signOut();
   }
@@ -42,11 +43,12 @@ class Authacation {
     GoogleSignInAccount signInAccount = await GoogleSignIn().signIn();
     GoogleSignInAuthentication signInAuthentication =
         await signInAccount.authentication;
-    AuthCredential authCredential = await GoogleAuthProvider.getCredential(
-      idToken: signInAuthentication.idToken,
+    AuthCredential credential = GoogleAuthProvider.getCredential(
       accessToken: signInAuthentication.accessToken,
+      idToken: signInAuthentication.idToken,
     );
-    AuthResult result = await firebaseAuth.signInWithCredential(authCredential);
+    AuthResult result = await firebaseAuth.signInWithCredential(credential);
     return users(result.user);
   }
+  
 }

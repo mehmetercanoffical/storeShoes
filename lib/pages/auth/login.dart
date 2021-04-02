@@ -56,7 +56,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               child: IconButton(
                                 icon: Icon(Icons.close),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                               ),
                             ),
                             sheight40,
@@ -187,6 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  // ignore: missing_return
   Future<Users> getSingIn() async {
     final provider = Provider.of<Authacation>(context, listen: false);
 
@@ -211,6 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  // ignore: missing_return
   Future<Users> getGoogleWidth() async {
     final provider = Provider.of<Authacation>(context, listen: false);
 
@@ -223,6 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Users userControl = await Cloud().getUsers(user.id);
         if (userControl == null) {
           var userNotFound = SnackBar(content: Text("User not found"));
+          // ignore: deprecated_member_use
           scfKey.currentState.showSnackBar(userNotFound);
         }
       }
@@ -235,10 +240,11 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         isLoading = false;
       });
-      getErrorMessage(errorCode: e.toString());
+      getErrorMessage(errorCode: e.code);
     }
   }
 
+  // ignore: missing_return
   Future<String> getErrorMessage({errorCode}) {
     String errorMesage;
     if (errorCode == "ERROR_USER_NOT_FOUND") {
@@ -250,9 +256,10 @@ class _LoginScreenState extends State<LoginScreen> {
     } else if (errorCode == "ERROR_INVALID_EMAIL") {
       errorMesage = "Eposta Adresi geçersizdir";
     } else {
-      errorMesage = " Tanınmayan bir hata oluştu";
+      errorMesage = " Tanınmayan bir hata oluştu$errorCode";
     }
     var snackbar = SnackBar(content: Text(errorMesage));
+    // ignore: deprecated_member_use
     scfKey.currentState.showSnackBar(snackbar);
   }
 }

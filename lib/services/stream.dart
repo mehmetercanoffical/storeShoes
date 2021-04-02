@@ -19,10 +19,9 @@ class _StreamAuthControlState extends State<StreamAuthControl> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Scaffold(
-                backgroundColor: Colors.red,
                 body: Center(
-                  child: CircularProgressIndicator(),
-                ));
+              child: CircularProgressIndicator(),
+            ));
           }
           if (snapshot.hasData) {
             Users activeUser = snapshot.data;

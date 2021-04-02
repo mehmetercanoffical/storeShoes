@@ -55,7 +55,9 @@ class _SingUpPageState extends State<SingUpPage> {
                               ),
                               child: IconButton(
                                 icon: Icon(Icons.close),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                               ),
                             ),
                             sheight40,
@@ -207,6 +209,7 @@ class _SingUpPageState extends State<SingUpPage> {
     );
   }
 
+  // ignore: missing_return
   Future<Users> getSignUp() async {
     final provider = Provider.of<Authacation>(context, listen: false);
 
@@ -239,6 +242,7 @@ class _SingUpPageState extends State<SingUpPage> {
     }
   }
 
+  // ignore: missing_return
   Future<String> getErrorMessage({errorCode}) {
     String errorMesage;
     if (errorCode == "ERROR_USER_NOT_FOUND") {
@@ -255,9 +259,11 @@ class _SingUpPageState extends State<SingUpPage> {
       errorMesage = " Tanınmayan bir hata oluştu";
     }
     var snackbar = SnackBar(content: Text(errorMesage));
+    // ignore: deprecated_member_use
     scfKey.currentState.showSnackBar(snackbar);
   }
 
+  // ignore: missing_return
   Future<Users> getGoogleWidth() async {
     final provider = Provider.of<Authacation>(context, listen: false);
 

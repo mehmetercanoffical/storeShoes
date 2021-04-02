@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:store/models/stories.dart';
-import 'package:store/pages/screen/home/shoesHori.dart';
+import 'package:store/models/products/popularTopView.dart';
+import 'package:store/models/products/listProducts.dart';
+import 'package:store/pages/screen/product/productContainer.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
 import 'package:store/widget/animated.dart';
 
+// ignore: must_be_immutable
 class NewPopular extends StatefulWidget {
   String imgPath;
   String title;
@@ -55,7 +57,7 @@ class _NewPopularState extends State<NewPopular> {
                     currentPage = page;
                     setState(() {});
                   },
-                  itemCount: popularPageView.length,
+                  itemCount: products.length,
                   itemBuilder: (context, index) {
                     return Column(
                       children: [pageviewTop(index, context)],
@@ -106,7 +108,7 @@ class _NewPopularState extends State<NewPopular> {
         height: 600,
         child: GridView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: getshoesHorizontal.length,
+            itemCount: getShoeses.length,
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -114,8 +116,8 @@ class _NewPopularState extends State<NewPopular> {
               mainAxisSpacing: 0,
             ),
             itemBuilder: (context, index) {
-              return ShoesHorizontal(
-                stories: getshoesHorizontal[index].stories,
+              return ProductContainer(
+                stories: getShoeses[index].stories,
               );
             }));
   }
@@ -127,10 +129,10 @@ class _NewPopularState extends State<NewPopular> {
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: getshoesHorizontal.length,
+          itemCount: getShoeses.length,
           itemBuilder: (context, index) {
-            return ShoesHorizontal(
-              stories: getshoesHorizontal[index].stories,
+            return ProductContainer(
+              stories: getShoeses[index].stories,
             );
           }),
     );
@@ -144,7 +146,7 @@ class _NewPopularState extends State<NewPopular> {
         image: DecorationImage(
           fit: BoxFit.cover,
           image: AssetImage(
-            popularPageView[index].shoesModels.shoesImg,
+            products[index].shoes.shoesImg,
           ),
         ),
       ),
@@ -154,26 +156,27 @@ class _NewPopularState extends State<NewPopular> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            popularPageView[index].isNew
-                ? Text(
-                    "New in",
-                    style: popiens(context, 18, whiteColor, FontWeight.w300),
-                  )
-                : Text(""),
+            // popularPageView[index].addedTime.,
+            //     ? Text(
+            //         "New in",
+            //         style: popiens(context, 18, whiteColor, FontWeight.w300),
+            //       )
+            //     : Text(""),
+            //
             sheight10,
             Text(
-              popularPageView[index].shoesModels.name,
+              products[index].shoes.name,
               style: popiens(context, 24, whiteColor, FontWeight.w600),
             ),
             sheight10,
             Text(
-              popularPageView[index].shoesModels.price.toString(),
+              products[index].shoes.price.toString(),
               style: popiens(context, 18, whiteColor, FontWeight.w500),
             ),
             sheight20,
             Row(
               children: [
-                for (int i = 0; i < popularPageView.length; i++)
+                for (int i = 0; i < products.length; i++)
                   i == currentPage
                       ? AnimatedContan(isSelected: true)
                       : AnimatedContan(isSelected: false)
