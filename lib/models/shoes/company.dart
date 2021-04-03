@@ -1,14 +1,23 @@
-import './shoes.dart';
+import 'package:flutter/cupertino.dart';
+
 class Company {
-  dynamic id;
+  int id;
   String name;
   String logoImg;
-  Shoes shoes;
+  // Shoes shoes;
+  String addressDate;
+  String descp;
+  int phoneNuber;
+  int allProducts;
 
   Company({
-    this.id,
+    @required this.id,
     this.logoImg,
+    this.allProducts,
     this.name,
-    this.shoes,
+    this.descp,
+    this.addressDate,
+    this.phoneNuber,
+    // this.shoes,
   });
 }

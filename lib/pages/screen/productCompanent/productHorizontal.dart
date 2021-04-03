@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:store/models/products.dart';
-import 'package:store/pages/screen/product/productDetail.dart';
+import 'package:store/pages/screen/productCompanent/productDetail.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/textStyle.dart';
@@ -16,6 +16,8 @@ class ProductContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: trasparentColor,
+      highlightColor: trasparentColor,
       onTap: () {
         Navigator.push(
             context,
@@ -26,6 +28,7 @@ class ProductContainer extends StatelessWidget {
             ));
       },
       child: Container(
+        margin: EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
         width: 150,
         height: 240,
         child: Column(
@@ -42,7 +45,13 @@ class ProductContainer extends StatelessWidget {
                 children: [
                   Image.asset(stories.company.logoImg, fit: BoxFit.cover),
                   sheight5,
-                  Image.asset(stories.shoes.shoesImg, fit: BoxFit.cover),
+                  Hero(
+                    tag: "tag",
+                    child: Image.asset(
+                      stories.shoes.shoesImg,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -52,9 +61,18 @@ class ProductContainer extends StatelessWidget {
               style: buildPopiens(context),
             ),
             sheight10,
-            Text(
-              stories.shoes.price.toString(),
-              style: buildPopiens(context),
+            Row(
+              children: [
+                Text(
+                  stories.shoes.price.toString(),
+                  style: buildPopiens(context),
+                ),
+                swidth10,
+                Text(
+                  stories.category.name,
+                  style: buildPopiens(context),
+                )
+              ],
             ),
             sheight5,
           ],

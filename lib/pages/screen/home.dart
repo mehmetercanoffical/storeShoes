@@ -5,6 +5,22 @@ import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/widget/titleCenter.dart';
 
+List<Widget> pages = [
+  NewPopular(),
+  Story(),
+];
+
+List<TitleCenter> title = [
+  TitleCenter(
+    isSelected: true,
+    title: "News&Story",
+  ),
+  TitleCenter(
+    isSelected: false,
+    title: "Story",
+  ),
+];
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -71,19 +87,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-List<Widget> pages = [
-  NewPopular(),
-  Story(),
-];
-
-List<TitleCenter> title = [
-  TitleCenter(
-    isSelected: true,
-    title: "News&Story",
-  ),
-  TitleCenter(
-    isSelected: false,
-    title: "Story",
-  ),
-];

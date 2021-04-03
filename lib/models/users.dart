@@ -30,6 +30,7 @@ class Users {
     );
   }
 
+
   factory Users.createCloud(DocumentSnapshot doc) {
     var docData = doc.data;
     return Users(
@@ -38,6 +39,7 @@ class Users {
       userName: docData["userName"],
       email: docData["email"],
       profilImg: docData["profilImg"],
+      address: docData["address"],
     );
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:store/style/color.dart';
 
 
-class AnimatedContan extends StatelessWidget {
-  const AnimatedContan({
+class AnimatedContaniner extends StatelessWidget {
+  const AnimatedContaniner({
     Key key,
     @required this.isSelected,
   }) : super(key: key);

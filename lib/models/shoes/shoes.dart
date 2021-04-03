@@ -1,5 +1,6 @@
 //import 'package:store/models/shoes/kind.dart';
 
+import 'package:flutter/cupertino.dart';
 import 'package:store/models/shoes/shoesColor.dart';
 
 class Shoes {
@@ -11,12 +12,14 @@ class Shoes {
   bool isChild;
   bool isMan;
   ShoesColor shoesColor;
-  int price;
+  double price;
+  int companyId;
 
   Shoes({
-    this.id,
+    @required this.id,
     this.shoesColor,
     this.name,
+    this.companyId,
     this.price,
     this.shoesImg,
     this.size,
@@ -25,5 +28,3 @@ class Shoes {
     this.isWowan,
   });
 }
-
-

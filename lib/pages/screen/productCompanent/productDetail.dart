@@ -29,15 +29,19 @@ class _ProductDetailState extends State<ProductDetail> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 topMenu(context),
-                Container(
-                  height: 180,
-                  width: 300,
-                  child: Image.asset(
-                    widget.stories.shoes.shoesImg,
+                Hero(
+                  tag: "tag",
+                  child: Container(
+                    height: 180,
+                    width: 300,
+                    child: Image.asset(
+                      widget.stories.shoes.shoesImg,
+                    ),
                   ),
                 ),
                 // Size size  //
-                // Button Buy //
+                sheight20,
+
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -63,22 +67,35 @@ class _ProductDetailState extends State<ProductDetail> {
                   ),
                 ),
                 sheight10,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    information(
-                        title: "Style", descp: widget.stories.kind.name),
-                    information(
-                        title: "Color",
-                        descp: widget.stories.shoes.shoesColor.name),
-                    information(
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      information(
+                          title: "Style", descp: widget.stories.category.name),
+                      sheight15,
+                      information(
+                          title: "Color",
+                          descp: widget.stories.shoes.shoesColor.name),
+                      sheight15,
+                      information(
                         title: "Price",
-                        descp: widget.stories.shoes.price.toString()),
-                    information(
+                        descp: widget.stories.shoes.price.toString(),
+                      ),
+                      sheight15,
+                      information(
                         title: "Date",
-                        descp: widget.stories.addedDate.toString()),
-                  ],
+                        descp: widget.stories.addedDate.toString(),
+                      ),
+                    ],
+                  ),
                 ),
+                Align(
+                  alignment: Alignment.center,
+                  child: ButtonCenter2(widget: widget),
+                ),
+                sheight20,
               ],
             ),
           ),
@@ -100,6 +117,7 @@ class _ProductDetailState extends State<ProductDetail> {
       ),
       Text(
         descp,
+        textAlign: TextAlign.justify,
         style: roboto(
           context,
           18,
@@ -170,5 +188,44 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   void dispose() {
     super.dispose();
+  }
+}
+
+class ButtonCenter2 extends StatelessWidget {
+  const ButtonCenter2({
+    Key key,
+    @required this.widget,
+  }) : super(key: key);
+
+  final ProductDetail widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        alignment: Alignment.center,
+        width: 150,
+        height: 72,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: greenColor,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Buy",
+              style: roboto(context, 16, whiteColor, FontWeight.w700),
+            ),
+            swidth10,
+            Text(
+              widget.stories.shoes.price.toString() + " TR",
+              style: popiens(context, 16, whiteColor, FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

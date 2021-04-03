@@ -3,8 +3,7 @@ import 'package:store/pages/screen/home.dart';
 import 'package:store/pages/screen/person.dart';
 import 'package:store/pages/screen/search.dart';
 import 'package:store/style/color.dart';
-import 'package:store/style/sizeconfig.dart';
-import 'package:store/style/textStyle.dart';
+import 'package:store/widget/buttonNavigatorCenter.dart';
 
 class ButtonPageView extends StatefulWidget {
   @override
@@ -45,10 +44,10 @@ class _ButtonPageViewState extends State<ButtonPageView> {
                         color: Color.fromRGBO(255, 255, 255, 1),
                         boxShadow: [
                           BoxShadow(
-                              color:
-                                  Color.fromRGBO(0, 0, 0, 0.05000000074505806),
-                              offset: Offset(0, 2),
-                              blurRadius: 20)
+                            color: Color.fromRGBO(0, 0, 0, 0.05000000074505806),
+                            offset: Offset(0, 2),
+                            blurRadius: 20,
+                          )
                         ],
                       ),
                       child: ListView.builder(
@@ -108,57 +107,3 @@ List<ButtonNavigatorCenter> getList = [
     isSelected: false,
   ),
 ];
-
-// ignore: must_be_immutable
-class ButtonNavigatorCenter extends StatelessWidget {
-  String title;
-  IconData iconData;
-  bool isSelected;
-  ButtonNavigatorCenter({this.iconData, this.isSelected, this.title});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: isSelected
-            ? Container(
-                // decoration: BoxDecoration(
-                //   color: Color.fromRGBO(32, 32, 48, 0.05000000074505806),
-                //   borderRadius: BorderRadius.circular(50),
-                // ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      iconData,
-                      color: darkColor,
-                      size: 24,
-                    ),
-                    swidth10,
-                    Text(
-                      title,
-                      style: popiens(
-                        context,
-                        12,
-                        darkColor,
-                        FontWeight.w800,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    iconData,
-                    color: greyColor,
-                    size: 22,
-                  ),
-                ],
-              ),
-      ),
-    );
-  }
-}

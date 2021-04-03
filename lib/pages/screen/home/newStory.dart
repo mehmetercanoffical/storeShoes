@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:store/models/products/popularTopView.dart';
 import 'package:store/models/products/listProducts.dart';
-import 'package:store/pages/screen/product/productContainer.dart';
+import 'package:store/pages/screen/productCompanent/companyList.dart';
+import 'package:store/pages/screen/productCompanent/gridList.dart';
+import 'package:store/pages/screen/productCompanent/productHorizontal.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
@@ -78,12 +80,13 @@ class _NewPopularState extends State<NewPopular> {
                   ),
                 ),
               ),
-              sheight30,
+              sheight15,
               listHorizontal(),
+              sheight30,
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Just Dropped",
+                  "Most Popular",
                   style: popiens(
                     context,
                     17,
@@ -92,9 +95,23 @@ class _NewPopularState extends State<NewPopular> {
                   ),
                 ),
               ),
-              sheight30,
+              sheight15,
               gridHorizontal(),
-              sheight30,
+              sheight15,
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Popular Brands",
+                  style: popiens(
+                    context,
+                    17,
+                    darkColor,
+                    FontWeight.w700,
+                  ),
+                ),
+              ),
+              sheight15,
+              listCompany(),
             ],
           ),
         ),
@@ -102,21 +119,22 @@ class _NewPopularState extends State<NewPopular> {
     );
   }
 
-  Container gridHorizontal() {
+  Widget gridHorizontal() {
     return Container(
         width: double.infinity,
-        height: 600,
+        height: 300,
         child: GridView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: getShoeses.length,
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 0,
-              mainAxisSpacing: 0,
+              childAspectRatio: 1 / 3,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
             ),
             itemBuilder: (context, index) {
-              return ProductContainer(
+              return GridCompanenet(
                 stories: getShoeses[index].stories,
               );
             }));
@@ -133,6 +151,22 @@ class _NewPopularState extends State<NewPopular> {
           itemBuilder: (context, index) {
             return ProductContainer(
               stories: getShoeses[index].stories,
+            );
+          }),
+    );
+  }
+
+  Container listCompany() {
+    return Container(
+      width: double.infinity,
+      height: 120,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: getShoeses.length,
+          itemBuilder: (context, index) {
+            return CompanyList(
+              company: getShoeses[index].stories,
             );
           }),
     );
@@ -156,13 +190,6 @@ class _NewPopularState extends State<NewPopular> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            // popularPageView[index].addedTime.,
-            //     ? Text(
-            //         "New in",
-            //         style: popiens(context, 18, whiteColor, FontWeight.w300),
-            //       )
-            //     : Text(""),
-            //
             sheight10,
             Text(
               products[index].shoes.name,
@@ -170,7 +197,7 @@ class _NewPopularState extends State<NewPopular> {
             ),
             sheight10,
             Text(
-              products[index].shoes.price.toString(),
+              "TR" + " " + products[index].shoes.price.toString(),
               style: popiens(context, 18, whiteColor, FontWeight.w500),
             ),
             sheight20,
@@ -178,8 +205,8 @@ class _NewPopularState extends State<NewPopular> {
               children: [
                 for (int i = 0; i < products.length; i++)
                   i == currentPage
-                      ? AnimatedContan(isSelected: true)
-                      : AnimatedContan(isSelected: false)
+                      ? AnimatedContaniner(isSelected: true)
+                      : AnimatedContaniner(isSelected: false)
               ],
             ),
             sheight20,
