@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:store/models/products/popularTopView.dart';
-import 'package:store/models/products/listProducts.dart';
-import 'package:store/pages/screen/productCompanent/companyList.dart';
-import 'package:store/pages/screen/productCompanent/gridList.dart';
-import 'package:store/pages/screen/productCompanent/productHorizontal.dart';
+import 'package:store/pages/screen/productCompanent/product.dart';
+import 'package:store/services/storiesCloud.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
@@ -29,13 +27,9 @@ class NewPopular extends StatefulWidget {
 }
 
 class _NewPopularState extends State<NewPopular> {
-  PageController controller;
   int currentPage = 0;
-  @override
-  void initState() {
-    super.initState();
-    controller = PageController(initialPage: 0);
-  }
+
+  StoriesCloud cloud = StoriesCloud();
 
   @override
   void dispose() {
@@ -81,7 +75,25 @@ class _NewPopularState extends State<NewPopular> {
                 ),
               ),
               sheight15,
-              listHorizontal(),
+              StreamBuilder(
+                stream: cloud.getShoes(),
+                // ignore: missing_return
+                builder: (context, snapshot) {
+                  return !snapshot.hasData
+                      ? CircularProgressIndicator()
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          primary: false,
+                          itemCount: snapshot.data.documents.length,
+                          itemBuilder: (context, index) {
+                            DocumentSnapshot doc =
+                                snapshot.data.documents[index];
+
+                            return productList(doc: doc);
+                          },
+                        );
+                },
+              ),
               sheight30,
               Container(
                 alignment: Alignment.centerLeft,
@@ -96,7 +108,7 @@ class _NewPopularState extends State<NewPopular> {
                 ),
               ),
               sheight15,
-              gridHorizontal(),
+              //gridHorizontal(),
               sheight15,
               Container(
                 alignment: Alignment.centerLeft,
@@ -111,7 +123,7 @@ class _NewPopularState extends State<NewPopular> {
                 ),
               ),
               sheight15,
-              listCompany(),
+              //listCompany(),
             ],
           ),
         ),
@@ -119,58 +131,42 @@ class _NewPopularState extends State<NewPopular> {
     );
   }
 
-  Widget gridHorizontal() {
-    return Container(
-        width: double.infinity,
-        height: 300,
-        child: GridView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: getShoeses.length,
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1 / 3,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-            itemBuilder: (context, index) {
-              return GridCompanenet(
-                stories: getShoeses[index].stories,
-              );
-            }));
-  }
+  // Widget gridHorizontal() {
+  //   return Container(
+  //       width: double.infinity,
+  //       height: 300,
+  //       child: GridView.builder(
+  //           scrollDirection: Axis.horizontal,
+  //           itemCount: getShoeses.length,
+  //           shrinkWrap: true,
+  //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+  //             crossAxisCount: 2,
+  //             childAspectRatio: 1 / 3,
+  //             crossAxisSpacing: 10,
+  //             mainAxisSpacing: 10,
+  //           ),
+  //           itemBuilder: (context, index) {
+  //             return GridCompanenet(
+  //               stories: getShoeses[index].stories,
+  //             );
+  //           }));
+  // }
 
-  Container listHorizontal() {
-    return Container(
-      width: double.infinity,
-      height: 260,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemCount: getShoeses.length,
-          itemBuilder: (context, index) {
-            return ProductContainer(
-              stories: getShoeses[index].stories,
-            );
-          }),
-    );
-  }
-
-  Container listCompany() {
-    return Container(
-      width: double.infinity,
-      height: 120,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemCount: getShoeses.length,
-          itemBuilder: (context, index) {
-            return CompanyList(
-              company: getShoeses[index].stories,
-            );
-          }),
-    );
-  }
+  // Container listCompany() {
+  //   return Container(
+  //     width: double.infinity,
+  //     height: 120,
+  //     child: ListView.builder(
+  //         scrollDirection: Axis.horizontal,
+  //         shrinkWrap: true,
+  //         itemCount: getShoeses.length,
+  //         itemBuilder: (context, index) {
+  //           return CompanyList(
+  //             company: getShoeses[index].stories,
+  //           );
+  //         }),
+  //   );
+  // }
 
   Container pageviewTop(int index, BuildContext context) {
     return Container(

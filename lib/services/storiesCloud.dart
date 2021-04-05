@@ -1,24 +1,21 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:store/models/stories.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class StoriesCloud {
-  //final Firestore firestore = Firestore.instance;
+  final Firestore firestore = Firestore.instance;
 
-  // Future<List<Gonderi>> akisGonderileriniGetir(kullaniciId) async {
-  // QuerySnapshot snapshot = await _firestore.collection("akislar").doc(kullaniciId).collection("kullaniciAkisGonderileri").orderBy("olusturulmaZamani", descending: true).get();
-  // List<Gonderi> gonderiler = snapshot.docs.map((doc) => Gonderi.dokumandanUret(doc)).toList();
-  // return gonderiler;
-  //}
+  Stream<QuerySnapshot> getShoes() {
+    var ref = firestore.collection("product").snapshots();
+    return ref;
+  }
 
-  // Future<List<Stories>> storiesGet() async{
-  //   await StoriesCloud().shoesGet();
-  // }
 
-  // Future<List<Stories>> shoesGet() async {
-  //   QuerySnapshot snapshot =
-  //       await firestore.collection("shoesPopular").getDocuments();
-  //   List<Stories> shoesPopular =
-  //       snapshot.documents.map((e) => Stories.storiesGet(e)).toList();
-  //   return shoesPopular;
-  // }
+  
+
+  Future<void> removeShoes({String docId}) async {
+    var remove = await firestore.collection("product").document(docId).delete();
+    return remove;
+  }
 }
