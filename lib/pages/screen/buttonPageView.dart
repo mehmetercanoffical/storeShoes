@@ -16,13 +16,17 @@ class ButtonPageView extends StatefulWidget {
 class _ButtonPageViewState extends State<ButtonPageView> {
   @override
   void initState() {
-    currentIndex = 0;
+    setState(() {
+      currentIndex = 0;
+    });
     super.initState();
   }
 
   @override
   void dispose() {
-    currentIndex = 0;
+    setState(() {
+      currentIndex = 0;
+    });
     super.dispose();
   }
 

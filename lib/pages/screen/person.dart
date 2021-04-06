@@ -46,7 +46,9 @@ class _PersonState extends State<Person> {
                 children: [
                   myandsettings(
                     context,
-                    press: () {},
+                    press: () {
+                      Authacation().singOut();
+                    },
                   ),
                   sheight20,
                   FutureBuilder<Object>(
