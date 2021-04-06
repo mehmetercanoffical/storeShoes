@@ -136,43 +136,6 @@ class _NewPopularState extends State<NewPopular> {
     );
   }
 
-  // Widget gridHorizontal() {
-  //   return Container(
-  //       width: double.infinity,
-  //       height: 300,
-  //       child: GridView.builder(
-  //           scrollDirection: Axis.horizontal,
-  //           itemCount: getShoeses.length,
-  //           shrinkWrap: true,
-  //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //             crossAxisCount: 2,
-  //             childAspectRatio: 1 / 3,
-  //             crossAxisSpacing: 10,
-  //             mainAxisSpacing: 10,
-  //           ),
-  //           itemBuilder: (context, index) {
-  //             return GridCompanenet(
-  //               stories: getShoeses[index].stories,
-  //             );
-  //           }));
-  // }
-
-  // Container listCompany() {
-  //   return Container(
-  //     width: double.infinity,
-  //     height: 120,
-  //     child: ListView.builder(
-  //         scrollDirection: Axis.horizontal,
-  //         shrinkWrap: true,
-  //         itemCount: getShoeses.length,
-  //         itemBuilder: (context, index) {
-  //           return CompanyList(
-  //             company: getShoeses[index].stories,
-  //           );
-  //         }),
-  //   );
-  // }
-
   Container pageviewTop(int index, BuildContext context) {
     return Container(
       height: 345,
