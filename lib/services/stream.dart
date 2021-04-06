@@ -26,7 +26,9 @@ class _StreamAuthControlState extends State<StreamAuthControl> {
           if (snapshot.hasData) {
             Users activeUser = snapshot.data;
             provider.activeUserId = activeUser.id;
-            return ButtonPageView();
+            return ButtonPageView(
+              id: provider.activeUserId,
+            );
           } else {
             return FirtsPage();
           }

@@ -1,15 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:store/models/products.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
-import 'package:store/style/textStyle.dart';
+import 'package:store/style/textStyle.dart'; 
 import 'package:store/widget/iconCenter.dart';
-import 'package:store/widget/shorInformation.dart';
 
 // ignore: must_be_immutable
 class ProductDetail extends StatefulWidget {
-  Product stories;
-  ProductDetail({this.stories});
+  const ProductDetail({
+    Key key,
+    @required this.doc,
+  }) : super(key: key);
+
+  final DocumentSnapshot doc;
   @override
   _ProductDetailState createState() => _ProductDetailState();
 }
@@ -34,9 +37,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   child: Container(
                     height: 180,
                     width: 300,
-                    child: Image.asset(
-                      widget.stories.shoes.shoesImg,
-                    ),
+                    child: Image.network(widget.doc["shoesImg"]),
                   ),
                 ),
                 // Size size  //
@@ -45,7 +46,7 @@ class _ProductDetailState extends State<ProductDetail> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    widget.stories.shoes.name,
+                    widget.doc["name"],
                     style: roboto(
                       context,
                       25,
@@ -73,21 +74,18 @@ class _ProductDetailState extends State<ProductDetail> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       information(
-                          title: "Style", descp: widget.stories.category.name),
+                          title: "Style", descp: widget.doc["categoryName"]),
+                      sheight15,
+                      information(title: "Color", descp: widget.doc["color"]),
                       sheight15,
                       information(
-                          title: "Color",
-                          descp: widget.stories.shoes.shoesColor.name),
+                          title: "Price",
+                          descp: widget.doc["price"].toString()),
                       sheight15,
-                      information(
-                        title: "Price",
-                        descp: widget.stories.shoes.price.toString(),
-                      ),
-                      sheight15,
-                      information(
-                        title: "Date",
-                        descp: widget.stories.addedDate.toString(),
-                      ),
+                      // information(
+                      //   title: "Date",
+                      //   descp: widget.doc["categoryName"].toString(),
+                      // ),
                     ],
                   ),
                 ),
@@ -132,10 +130,10 @@ class _ProductDetailState extends State<ProductDetail> {
     return Row(
       children: [
         // shrt information bir küçük bir widgettir. widget kısmından bulunur.
-        ShortInformation(
-          title: "Condination",
-          isNew: widget.stories.isNew,
-        ),
+        // ShortInformation(
+        //   title: "Condination",
+        //   isNew: widget.stories.isNew,
+        // ),
         Container(
           alignment: Alignment.center,
           height: 5,
@@ -147,10 +145,10 @@ class _ProductDetailState extends State<ProductDetail> {
           child: Text("."),
         ),
         swidth10,
-        ShortInformation(
-          title: "quality",
-          datetime: widget.stories.addedDate,
-        ),
+        // ShortInformation(
+        //   title: "quality",
+        //   datetime: widget.stories.addedDate,
+        // ),
       ],
     );
   }
@@ -220,7 +218,7 @@ class ButtonCenter2 extends StatelessWidget {
             ),
             swidth10,
             Text(
-              widget.stories.shoes.price.toString() + " TR",
+              widget.doc["price"].toString() + " TR",
               style: popiens(context, 16, whiteColor, FontWeight.bold),
             )
           ],

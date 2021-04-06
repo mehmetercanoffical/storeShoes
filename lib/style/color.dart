@@ -8,3 +8,4 @@ Color trasparentColor = Colors.transparent;
 
 Color blueColor = Color(0xff0008C7);
 Color greenColor = Color(0xff42D70D);
+Color blackGreyColor = Color(0xff12121D);

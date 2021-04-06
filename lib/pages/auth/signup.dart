@@ -276,7 +276,7 @@ class _SingUpPageState extends State<SingUpPage> {
         Cloud().saveUsers(
           id: user.id,
           email: user.email,
-          photoImg: user.profilImg,
+          photoImg: user.photoImg,
           userName: user.userName,
         );
       }

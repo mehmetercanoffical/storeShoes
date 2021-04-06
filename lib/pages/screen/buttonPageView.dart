@@ -4,13 +4,33 @@ import 'package:store/pages/screen/person.dart';
 import 'package:store/pages/screen/search.dart';
 import 'package:store/style/color.dart';
 import 'package:store/widget/buttonNavigatorCenter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ButtonPageView extends StatefulWidget {
+  var id;
+  ButtonPageView({this.id});
   @override
   _ButtonPageViewState createState() => _ButtonPageViewState();
 }
 
 class _ButtonPageViewState extends State<ButtonPageView> {
+  @override
+  void initState() {
+    currentIndex = 0;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    currentIndex = 0;
+    super.dispose();
+  }
+
+  List pages = [
+    Home(),
+    Search(),
+    Person(),
+  ];
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -44,7 +64,7 @@ class _ButtonPageViewState extends State<ButtonPageView> {
                         color: Color.fromRGBO(255, 255, 255, 1),
                         boxShadow: [
                           BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.05000000074505806),
+                            color: Color.fromRGBO(0, 0, 0, 0.050),
                             offset: Offset(0, 2),
                             blurRadius: 20,
                           )
@@ -84,12 +104,6 @@ class _ButtonPageViewState extends State<ButtonPageView> {
   }
 }
 
-List<Widget> pages = [
-  Home(),
-  Search(),
-  Person(),
-];
-
 List<ButtonNavigatorCenter> getList = [
   new ButtonNavigatorCenter(
     iconData: Icons.home,
@@ -97,13 +111,13 @@ List<ButtonNavigatorCenter> getList = [
     isSelected: true,
   ),
   new ButtonNavigatorCenter(
-    iconData: Icons.search,
+    iconData: FontAwesomeIcons.search,
     title: "Search",
     isSelected: false,
   ),
   new ButtonNavigatorCenter(
-    iconData: Icons.person,
-    title: "Person",
+    iconData: FontAwesomeIcons.user,
+    title: "My",
     isSelected: false,
   ),
 ];

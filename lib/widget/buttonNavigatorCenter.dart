@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
@@ -17,10 +18,15 @@ class ButtonNavigatorCenter extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: isSelected
             ? Container(
+                //padding: EdgeInsets.symmetric(horizontal: 5,VER),
+                decoration: BoxDecoration(
+                  //color: Color(0xff202030).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    FaIcon(
                       iconData,
                       color: darkColor,
                       size: 24,

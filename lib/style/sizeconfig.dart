@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 String imgPath = "assets/img";
 
-const double kPaddingHorizontal = 10;
+const double kPaddingHorizontal = 15;
 const double kPaddingVertical = 20;
 
 // ------------ SİZED BOX HEİGHT --------------

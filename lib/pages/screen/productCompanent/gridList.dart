@@ -17,15 +17,15 @@ class GridCompanenet extends StatelessWidget {
     return InkWell(
       splashColor: trasparentColor,
       highlightColor: trasparentColor,
-      onTap: () {
-        Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => ProductDetail(
-                stories: stories,
-              ),
-            ));
-      },
+      // onTap: () {
+      //   Navigator.push(
+      //       context,
+      //       CupertinoPageRoute(
+      //         builder: (context) => ProductDetail(
+      //           doc: ,
+      //         ),
+      //       ));
+      // },
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: kPaddingHorizontal,

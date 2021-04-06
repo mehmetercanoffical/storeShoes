@@ -7,7 +7,7 @@ class Users {
   final String id;
   final String userName;
   final String email;
-  final String profilImg;
+  final String photoImg;
   final String phoneNumber;
   Address address;
 
@@ -16,7 +16,7 @@ class Users {
     this.userName,
     this.email,
     this.phoneNumber,
-    this.profilImg,
+    this.photoImg,
     this.address,
   });
 
@@ -26,10 +26,9 @@ class Users {
       id: firebaseUser.uid,
       userName: firebaseUser.displayName,
       email: firebaseUser.email,
-      profilImg: firebaseUser.photoUrl,
+      photoImg: firebaseUser.photoUrl,
     );
   }
-
 
   factory Users.createCloud(DocumentSnapshot doc) {
     var docData = doc.data;
@@ -38,7 +37,7 @@ class Users {
       phoneNumber: docData["phoneNumber"],
       userName: docData["userName"],
       email: docData["email"],
-      profilImg: docData["profilImg"],
+      photoImg: docData["photoImg"],
       address: docData["address"],
     );
   }

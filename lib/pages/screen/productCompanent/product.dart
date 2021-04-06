@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:store/pages/screen/productCompanent/productDetail.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
 
-class productList extends StatelessWidget {
-  const productList({
+class ProductList extends StatelessWidget {
+  const ProductList({
     Key key,
     @required this.doc,
   }) : super(key: key);
@@ -14,63 +16,78 @@ class productList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
-      width: 150,
-      height: 240,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 150,
-            width: 150,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (context) => ProductDetail(
+              doc: doc,
             ),
-            child: Column(
+          ),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
+        width: 150,
+        height: 270,
+        child: Row(
+          children: [
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                //Image.network(doc["shoesImg"], fit: BoxFit.cover),
-                sheight5,
-                Hero(
-                  tag: "tag",
-                  child: Image.network(
-                    doc["shoesImg"],
-                    fit: BoxFit.cover,
+                Container(
+                  height: 150,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.network(doc["categoryImg"], fit: BoxFit.cover),
+                      sheight5,
+                      Image.network(
+                        doc["shoesImg"],
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ],
                   ),
                 ),
+                sheight5,
+                Text(
+                  doc["name"],
+                  style: buildPopiens(context,
+                      size: 17, color: darkColor, weight: FontWeight.w600),
+                ),
+                sheight10,
+                Text(
+                  doc["categoryName"],
+                  style: buildPopiens(context,
+                      size: 15, color: greyColor, weight: FontWeight.w600),
+                ),
+                swidth10,
+                Text(
+                  "TR " + doc["price"].toString(),
+                  style: buildPopiens(context,
+                      size: 16, color: darkColor, weight: FontWeight.bold),
+                ),
+                sheight5,
               ],
             ),
-          ),
-          sheight5,
-          Text(
-            doc["name"],
-            style: buildPopiens(context),
-          ),
-          sheight10,
-          Row(
-            children: [
-              Text(
-                doc["price"].toString(),
-                style: buildPopiens(context),
-              ),
-              swidth10,
-              Text(
-                doc["categoryId"],
-                style: buildPopiens(context),
-              )
-            ],
-          ),
-          sheight5,
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  TextStyle buildPopiens(BuildContext context) => popiens(
+  TextStyle buildPopiens(BuildContext context,
+          {double size, Color color, FontWeight weight}) =>
+      popiens(
         context,
-        14,
-        darkColor,
-        FontWeight.w800,
+        size,
+        color,
+        weight,
       );
 }

@@ -81,16 +81,21 @@ class _NewPopularState extends State<NewPopular> {
                 builder: (context, snapshot) {
                   return !snapshot.hasData
                       ? CircularProgressIndicator()
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          primary: false,
-                          itemCount: snapshot.data.documents.length,
-                          itemBuilder: (context, index) {
-                            DocumentSnapshot doc =
-                                snapshot.data.documents[index];
+                      : Container(
+                          width: double.infinity,
+                          height: 260,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            primary: false,
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot doc =
+                                  snapshot.data.documents[index];
 
-                            return productList(doc: doc);
-                          },
+                              return ProductList(doc: doc);
+                            },
+                          ),
                         );
                 },
               ),

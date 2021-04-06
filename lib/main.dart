@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         title: 'Store App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          accentColor: Colors.black,
+          accentColor: Colors.white,
           primarySwatch: Colors.blue,
           textTheme: GoogleFonts.poppinsTextTheme().copyWith(
             headline3: GoogleFonts.poppins(),
