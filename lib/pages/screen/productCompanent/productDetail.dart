@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store/pages/screen/order/orderFirts.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
-import 'package:store/style/textStyle.dart'; 
+import 'package:store/style/textStyle.dart';
 import 'package:store/widget/iconCenter.dart';
 
 // ignore: must_be_immutable
@@ -91,7 +93,41 @@ class _ProductDetailState extends State<ProductDetail> {
                 ),
                 Align(
                   alignment: Alignment.center,
-                  child: ButtonCenter2(widget: widget),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(
+                        () => Order(
+                          doc: widget.doc,
+                        ),
+                        transition: Transition.cupertino,
+                      );
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 150,
+                      height: 72,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: greenColor,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Buy",
+                            style: roboto(
+                                context, 16, whiteColor, FontWeight.w700),
+                          ),
+                          swidth10,
+                          Text(
+                            widget.doc["price"].toString() + " TR",
+                            style: popiens(
+                                context, 16, whiteColor, FontWeight.bold),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
                 sheight20,
               ],
@@ -186,44 +222,5 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   void dispose() {
     super.dispose();
-  }
-}
-
-class ButtonCenter2 extends StatelessWidget {
-  const ButtonCenter2({
-    Key key,
-    @required this.widget,
-  }) : super(key: key);
-
-  final ProductDetail widget;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        alignment: Alignment.center,
-        width: 150,
-        height: 72,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: greenColor,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Buy",
-              style: roboto(context, 16, whiteColor, FontWeight.w700),
-            ),
-            swidth10,
-            Text(
-              widget.doc["price"].toString() + " TR",
-              style: popiens(context, 16, whiteColor, FontWeight.bold),
-            )
-          ],
-        ),
-      ),
-    );
   }
 }

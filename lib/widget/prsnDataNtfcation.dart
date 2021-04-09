@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/textStyle.dart';
 
+// ignore: must_be_immutable
 class PersonPageAltSettings extends StatefulWidget {
   String title;
   int notification;

@@ -10,18 +10,6 @@ import 'package:store/widget/animated.dart';
 
 // ignore: must_be_immutable
 class NewPopular extends StatefulWidget {
-  String imgPath;
-  String title;
-  bool isNew;
-  double price;
-
-  NewPopular({
-    this.imgPath,
-    this.isNew,
-    this.price,
-    this.title,
-  });
-
   @override
   _NewPopularState createState() => _NewPopularState();
 }

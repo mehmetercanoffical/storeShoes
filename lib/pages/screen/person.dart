@@ -174,6 +174,7 @@ class _PersonState extends State<Person> {
   }
 }
 
+// ignore: must_be_immutable
 class PersonBuyAndSellContaier extends StatelessWidget {
   String title;
   int caucht;

@@ -6,6 +6,7 @@ import 'package:store/style/color.dart';
 import 'package:store/widget/buttonNavigatorCenter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// ignore: must_be_immutable
 class ButtonPageView extends StatefulWidget {
   var id;
   ButtonPageView({this.id});
@@ -20,14 +21,6 @@ class _ButtonPageViewState extends State<ButtonPageView> {
       currentIndex = 0;
     });
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    setState(() {
-      currentIndex = 0;
-    });
-    super.dispose();
   }
 
   List pages = [

@@ -10,6 +10,7 @@ import 'package:store/services/stream.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
+import 'package:store/widget/buttonNext.dart';
 import 'package:store/widget/socialMediaAuth.dart';
 import 'package:store/widget/textField.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -122,34 +123,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             sheight40,
                             Align(
                               alignment: Alignment.center,
-                              child: InkWell(
-                                onTap: getSingIn,
-                                child: Container(
-                                  height: 70,
-                                  width: 180,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(40),
-                                    color: blueColor,
-                                  ),
-                                  child: isLoading
-                                      ? CircularProgressIndicator()
-                                      : Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "Sign In",
-                                              style: popiens(context, 16,
-                                                  whiteColor, FontWeight.w600),
-                                            ),
-                                            swidth5,
-                                            Icon(
-                                              Icons.arrow_right_alt,
-                                              color: whiteColor,
-                                            )
-                                          ],
-                                        ),
-                                ),
+                              child: ButtonNext(
+                                press: getSingIn,
+                                title: "Sing In",
                               ),
                             ),
                             //Spacer(),

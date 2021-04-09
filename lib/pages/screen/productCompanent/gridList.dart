@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:store/models/products.dart';
-import 'package:store/pages/screen/productCompanent/productDetail.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
 
+// ignore: must_be_immutable
 class GridCompanenet extends StatelessWidget {
   Product stories;
 

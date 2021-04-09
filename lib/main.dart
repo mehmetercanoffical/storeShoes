@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:store/services/stream.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import './style/theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Store App',
         debugShowCheckedModeBanner: false,
+        darkTheme: AppTheme().darkTheme(),
+        themeMode: ThemeMode.system,
         theme: ThemeData(
           accentColor: Colors.white,
           primarySwatch: Colors.blue,

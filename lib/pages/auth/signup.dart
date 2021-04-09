@@ -13,6 +13,8 @@ import 'package:store/style/textStyle.dart';
 import 'package:store/widget/socialMediaAuth.dart';
 import 'package:store/widget/textField.dart';
 
+import 'package:store/widget/buttonNext.dart';
+
 class SingUpPage extends StatefulWidget {
   @override
   _SingUpPageState createState() => _SingUpPageState();
@@ -143,33 +145,11 @@ class _SingUpPageState extends State<SingUpPage> {
                             sheight15,
                             Align(
                               alignment: Alignment.center,
-                              child: InkWell(
-                                onTap: getSignUp,
-                                child: Container(
-                                  height: 70,
-                                  width: 180,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(40),
-                                    color: redOpacityColor,
-                                  ),
-                                  child: isLoading
-                                      ? CircularProgressIndicator()
-                                      : Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "Sign Up",
-                                              style: popiens(context, 16,
-                                                  whiteColor, FontWeight.w600),
-                                            ),
-                                            swidth5,
-                                            Icon(
-                                              Icons.arrow_right_alt,
-                                              color: whiteColor,
-                                            )
-                                          ],
-                                        ),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: ButtonNext(
+                                  press: getSignUp,
+                                  title: "Sing Up",
                                 ),
                               ),
                             ),

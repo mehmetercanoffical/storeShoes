@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store/pages/screen/productCompanent/productDetail.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
@@ -18,14 +19,7 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          CupertinoPageRoute(
-            builder: (context) => ProductDetail(
-              doc: doc,
-            ),
-          ),
-        );
+        Get.to(() => ProductDetail(doc: doc));
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
@@ -46,11 +40,14 @@ class ProductList extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(doc["categoryImg"], fit: BoxFit.cover),
+                      Image.network(
+                        doc["categoryImg"],
+                        fit: BoxFit.cover,
+                      ),
                       sheight5,
                       Image.network(
                         doc["shoesImg"],
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.cover,
                       ),
                     ],
                   ),
