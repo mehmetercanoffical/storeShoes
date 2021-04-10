@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/models/cardModel.dart';
-import 'package:store/pages/screen/order/orderFirts.dart';
 import 'package:store/services/getxController.dart';
 import 'package:store/style/color.dart';
 import 'package:store/style/sizeconfig.dart';
 import 'package:store/style/textStyle.dart';
 import 'package:store/widget/buttonNext.dart';
 import 'package:store/widget/title.dart';
+
+import '../../../models/cardModel.dart';
+import 'paymant.dart';
 
 class AddCard extends StatefulWidget {
   @override
@@ -18,7 +20,6 @@ class _AddCardState extends State<AddCard> {
   String securitCode, cardNumber;
   String name, cardDate;
   bool isLoading = false;
-  // ignore: deprecated_member_use
   List<CardModel> cardModel = new List<CardModel>();
 
   final GetCardController getCardController = Get.put(GetCardController());
@@ -229,15 +230,11 @@ class _AddCardState extends State<AddCard> {
     );
   }
 
-  void log(var lst) {
-    lst.forEach((n) => print(n));
-  }
-
   void getSavetoCard() {
     if (key.currentState.validate()) {
       key.currentState.save();
-      var mappedNames = cardModel.map((e) => e.cardName);
-      log(mappedNames);
+
+      getCardController.add();
       Get.snackbar("Succeful", "Add Card", backgroundColor: greenColor);
       setState(() {
         print("is Loading");
@@ -247,8 +244,9 @@ class _AddCardState extends State<AddCard> {
       try {
         print("card Add");
         cardAdd();
-        print("card Finish");
+        Get.to(() => Paymend());
       } catch (e) {
+        print(e);
         setState(() {
           isLoading = false;
         });
@@ -257,13 +255,14 @@ class _AddCardState extends State<AddCard> {
   }
 
   void cardAdd() {
+    print("Card add run");
     return cardModel.add(
-      CardModel(
+      new CardModel(
         cardCompany: "Master Card",
         cardName: name,
         cardNumber: cardNumber,
         cv2: securitCode,
-        cardItem: getCardController.cardItem,
+        cardItem: 10,
       ),
     );
   }

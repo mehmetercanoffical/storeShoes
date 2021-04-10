@@ -1,3 +1,4 @@
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:store/services/authacation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:store/services/stream.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider<Authacation>(
       create: (_) => Authacation(),
-      child: MaterialApp(
+      child: GetMaterialApp(
         title: 'Store App',
         debugShowCheckedModeBanner: false,
         darkTheme: AppTheme().darkTheme(),

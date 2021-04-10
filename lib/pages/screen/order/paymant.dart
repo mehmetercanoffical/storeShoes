@@ -19,14 +19,14 @@ class _PaymendState extends State<Paymend> {
   void initState() {
     super.initState();
     listCardModel = new List<CardModel>();
+    print("${listCardModel.length}");
   }
 
-  bool isCard;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      child: SafeArea(
+      body: Container(
+        child: SafeArea(
           child: listCardModel.isEmpty
               ? Container(
                   child: Padding(
@@ -48,14 +48,17 @@ class _PaymendState extends State<Paymend> {
               : ListView.builder(
                   itemCount: listCardModel.length,
                   itemBuilder: (context, index) {
+                    print("${listCardModel.length}");
                     return Container(
                       height: 10,
                       width: 10,
                       color: Colors.red,
                     );
                   },
-                )),
-    ));
+                ),
+        ),
+      ),
+    );
   }
 
   InkWell addCard(BuildContext context, {Function press}) {

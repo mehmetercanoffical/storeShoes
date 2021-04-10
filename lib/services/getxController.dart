@@ -7,11 +7,16 @@ class GetCardController extends GetX {
   get cardItem => _cardItem;
   set cardItem(cardItem) => _cardItem = cardItem;
 
-  void cardItemPlus() {
+  int cardItemPlus() {
     cardItem++;
+    print(cardItem);
   }
 
   void cardItemRemove() {
     cardItem--;
+  }
+
+  void add() {
+    print(cardItem);
   }
 }

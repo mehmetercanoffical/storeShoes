@@ -38,8 +38,9 @@ class _NewPopularState extends State<NewPopular> {
                 width: double.infinity,
                 child: PageView.builder(
                   onPageChanged: (int page) {
-                    currentPage = page;
-                    setState(() {});
+                    setState(() {
+                      currentPage = page;
+                    });
                   },
                   itemCount: products.length,
                   itemBuilder: (context, index) {
